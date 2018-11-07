@@ -4,6 +4,13 @@ DataRobot ROI Estimation Tool
 The goal of this project is to demonstrate several methods of
 estimating the ROI of a model prior to running a live test.
 
+
+Note: Functionality for Binary Classification is all that is implemented
+      so far. This includes cost matrix analysis, intervention analysis
+      and a simple demonstration of using a model for optimisation.
+
+      Tasks for regression problems are planned but under construction.
+
 ### Assumptions
 
 This project assumes you have a valid DataRobot account and that you
