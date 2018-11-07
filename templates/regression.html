@@ -1,0 +1,48 @@
+{% include "header.html" %}
+
+<div class="chooser text-center">
+  <h2>{{ project.project_name }}</h2>
+  <h4>Target: {{ project.target }} - Metric: {{ project.metric }}</h4>
+</div>
+
+<div class="controlpanel text-center">
+     <div class="input-group" style="margin: 0 auto; width: 680px;">
+     <h4>Analysis Options</h4>
+     <table> 
+      <tr> <th>Discrete Cutoff Analysis</th> <th>Continuous Analysis</th> <th>Aggregated Analysis</th></tr>
+      <tr>
+          <td>Use this method if there is a discrete boundary between predictions that are costly versus beneficial.<br/><br/> 
+              For example, every prediction that is 10% too high imposes a $100 cost, while every prediction more than %5 too low costs $200</td>
+          <td>Use this method if the business costs vary in manner that is proportional to the error. <br/><br/>
+              For example, there is a cost of $100 for every 1% of error, once the error is over 10% (irrespective of whether it is too hight or too low).</td>
+          <td>Use this approach if the business costs are calculated over an aggregation of the model errors.<br/><br/>
+              For example, errors are aggregated by individual store, by week and there is a cost of $1,000 per 10% error.</td>
+      </tr>
+      <tr>
+      <td>
+        <form method="get" action="/regression_discrete">
+         <input type="hidden" name="projectId" value="{{ project.id }}">
+         <button type="submit" class="btn btn-danger">Apply Discrete Analysis</button>
+        </form>
+      </td>
+      <td>
+      <form method="post" action="/regression_continuous">
+         <input type="hidden" name="projectId" value="{{ project.id }}">
+         <button type="submit" class="btn btn-danger">Apply Continuous Analysis</button>
+      </form>
+      </td>
+      <td>
+       <form method="get" action="/regression_aggregate">
+         <input type="hidden" name="projectId" value="{{ project.id }}">
+         <button type="submit" class="btn btn-danger">Apply Aggregated Analysis</button>
+       </form>
+      </td>
+      </tr>
+     </table>
+
+    </div>
+</div>
+
+{% include "basic_model_list.html" %}
+
+{% include "footer.html" %}

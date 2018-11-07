@@ -1,0 +1,56 @@
+{% include "header.html" %}
+
+<div class="chooser text-center">
+  <h2>Intervention Analysis: {{ project.project_name }}</h2>
+  <h4>Target: {{ project.target }} - Metric: {{ project.metric }}</h4>
+</div>
+
+<div class="controlpanel text-center">
+    <form method="post" action="/intervention">
+     <input type="hidden" name="projectId" value="{{ project.id }}">
+     <div class="input-group" style="margin: 0 auto; width: 680px;">
+     <table>
+      <tr><th colspan=2>Problem Details</th> <th colspan=4>Intervention</th><th></th></tr>
+      <tr><td>Models</td> <td><input type="text" class="form-control" size="20" value='{{ num_models }}' name='num_models'></td>
+          <th>Cost</th> <th></th> <th>Success</th> <th>Backfire</th> <th></th></tr>
+      <tr>
+          <td>Cases</td>
+          <td><input type="text" class="form-control" size="20" value='{{ cases }}' name='cases'></td>
+	  <td><input type="text" class="form-control" size="20" value='{{ cost }}' name='cost'></td>
+          <td>Probability</td>
+          <td><input type="text" class="form-control" size="10" value='{{ succrate }}' name='succrate'></td>
+          <td><input type="text" class="form-control" size="10" value='{{ backfire }}' name='backfire'></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>Baserate</td>
+          <td><input type="text" class="form-control" size="20" value='{{ baserate }}' name='baserate'></td>
+          <td></td>
+          <td>Impact</td>
+          <td><input type="text" class="form-control" size="20" value='{{ payoff }}' name='payoff'></td>
+          <td><input type="text" class="form-control" size="20" value='{{ payback }}' name='payback'></td>	  
+          <td><button type="submit" class="btn btn-danger">Update</button></td>
+      </tr>
+     </table>
+    </div>
+  </form>
+</div>
+
+<div class="canvas text-center">
+   <div class="input-group" style="margin: 0 auto; width: 800px;">
+     <table>
+      <tr><th>Model</th><th>Data</th><th>{{ project.metric }}</th><th>Threshold</th><th>ROI</th></tr>
+       {% for mod in models %}
+        <tr>
+          <td>{{ mod['model_type'] }}</td>
+          <td>{{ mod['sample_pct'] }}</td>
+          <td>{{ mod['metric'] }}</td>
+          <td>{{ mod['threshold'] }}</td>
+          <td>{{ mod['roi'] }}</td>
+        </tr>
+       {% endfor %}
+     </table>
+   </div>
+</div>
+
+{% include "footer.html" %}

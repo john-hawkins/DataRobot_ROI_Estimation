@@ -1,0 +1,48 @@
+{% include "header.html" %}
+
+<div class="chooser text-center">
+  <h2>Project Name: {{ project.project_name }}</h2>
+  <h4>Target: {{ project.target }} </h4>
+  <h4>Metric: {{ project.metric }}</h4>
+</div>
+
+<div class="controlpanel text-center">
+     <div class="input-group" style="margin: 0 auto; width: 680px;">
+     <h3>Analysis Options</h3>
+     <table>
+      <tr> <th>Costs and Benefits Payoff</th> <th>Intervention Analysis</th> <th>Simulation/Optimization</th></tr>
+      <tr>
+          <td>Use this method if you can say directly what the costs and benefits are of each of the potential outcomes.</td>
+          <td>Use this method if the actions based on the model predictions take have an estimated probability 
+              of succeeding or backfiring.</td>
+          <td>Use this approach if want to use the model to optomise a business process by changing operations to increase
+              the likelihood of the desired outcome.</td>
+      </tr>
+      <tr>
+      <td>
+       <form method="post" action="/costbenefit">
+         <input type="hidden" name="projectId" value="{{ project.id }}">
+         <button type="submit" class="btn btn-danger">Apply Cost/Benefit Payoff Analysis</button>
+       </form>
+      </td>
+      <td>
+       <form method="get" action="/intervention">
+         <input type="hidden" name="projectId" value="{{ project.id }}">
+         <button type="submit" class="btn btn-danger">Apply Intervention Analysis</button>
+       </form>
+      </td>
+      <td>
+       <form method="get" action="/optimization">
+         <input type="hidden" name="projectId" value="{{ project.id }}">
+         <button type="submit" class="btn btn-danger">Apply Optimization Analysis</button>
+       </form>
+      </td>
+      </tr>
+     </table>
+
+    </div>
+</div>
+
+{% include "basic_model_list.html" %}
+
+{% include "footer.html" %}

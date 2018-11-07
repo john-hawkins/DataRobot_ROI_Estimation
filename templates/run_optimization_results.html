@@ -1,0 +1,34 @@
+
+<div class="canvas text-center">
+   <div class="input-group" style="margin: 0 auto; width: 800px;">
+     <table>
+        <tr>
+          <td>Observed Target on Test Data</td>
+          <td>{{ total }}</td>
+        </tr>
+        <tr>
+          <td colspan=2>Optimised Target on Test Data (Estimated Range) </td>
+        </tr>
+        <tr>
+          <td>Min</td>
+          <td>{{ '%0.1f' %  optimised_lb }}</td>
+        </tr>
+
+        <tr>
+          <td>Max</td>
+          <td>{{ '%0.1f' % optimised_ub }}</td>
+        </tr>
+        <tr>
+          <td colspan=2>Change in Input Distributions (Kullback Leibler Divergence) </td>
+        </tr>
+        <tr>
+          <td>Feature One: {{colone}}  </td>
+          <td>{{ '%0.1f' %  feat1_change }} </td>
+        </tr>
+        <tr>
+          <td>Feature Two: {{coltwo}}  </td>
+          <td>{{ '%0.1f' %  feat2_change }} </td>
+        </tr>
+     </table>
+   </div>
+</div>
